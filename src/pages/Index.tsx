@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
-import { Zap, Battery, Settings, Car, Shield, Clock, MapPin, Star, CheckCircle, ArrowRight, Phone, Wrench, CircuitBoard, Plug } from "lucide-react";
+import { Zap, Battery, Settings, Car, Shield, Clock, MapPin, Star, CheckCircle, ArrowRight, Phone, Wrench, CircuitBoard, Plug, Gauge, Lightbulb, AlertTriangle, ThermometerSun, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import TableOfContents from "@/components/TableOfContents";
+import CarAnimation from "@/components/CarAnimation";
+import CarCatchGame from "@/components/CarCatchGame";
+import EVCostCalculator from "@/components/EVCostCalculator";
 import heroImg from "@/assets/hero-car-service.jpg";
 import batteryImg from "@/assets/battery-service.jpg";
 import alternatorImg from "@/assets/alternator-service.jpg";
@@ -17,6 +20,7 @@ const tocItems = [
   { id: "electrical-diagnostics", text: "Car Electrical Diagnostics", level: 3 },
   { id: "ev-charging", text: "EV Charging Installation", level: 3 },
   { id: "wiring-harness", text: "Wiring Harness Repair", level: 3 },
+  { id: "ev-cost-calculator", text: "EV Cost Savings Calculator", level: 2 },
   { id: "why-choose-us", text: "Why Choose USA Car Volts", level: 2 },
   { id: "service-locations", text: "Our Service Locations", level: 2 },
   { id: "how-it-works", text: "How It Works", level: 2 },
@@ -25,24 +29,119 @@ const tocItems = [
   { id: "common-problems", text: "Common Electrical Problems", level: 3 },
   { id: "maintenance-tips", text: "Maintenance Tips", level: 3 },
   { id: "faq", text: "Frequently Asked Questions", level: 2 },
+  { id: "mini-game", text: "Catch the Volts Game", level: 2 },
   { id: "contact-us", text: "Contact Us Today", level: 2 },
 ];
 
 const Index = () => {
   return (
     <>
-      {/* JSON-LD */}
+      {/* JSON-LD: AutoRepair + LocalBusiness + Organization + AggregateRating */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "AutoRepair",
-          "name": "USA Car Volts",
-          "url": "https://www.usacarvolts.com",
-          "telephone": "+1-800-555-VOLT",
-          "description": "Expert car electrical services across the USA including battery replacement, alternator repair, starter motor repair, EV charging installation and more.",
-          "areaServed": ["Florida", "California", "United States"],
-          "serviceType": ["Car Battery Replacement", "Alternator Repair", "Starter Motor Repair", "Car Electrical Diagnostics", "EV Charging Installation", "Wiring Harness Repair"],
-        })
+        __html: JSON.stringify([
+          {
+            "@context": "https://schema.org",
+            "@type": "AutoRepair",
+            "name": "USA Car Volts",
+            "url": "https://www.usacarvolts.com",
+            "telephone": "+1-800-555-VOLT",
+            "email": "info@usacarvolts.com",
+            "description": "Expert car electrical services across the USA including battery replacement, alternator repair, starter motor repair, EV charging installation and more.",
+            "areaServed": [
+              { "@type": "State", "name": "Florida" },
+              { "@type": "State", "name": "California" },
+            ],
+            "serviceType": ["Car Battery Replacement", "Alternator Repair", "Starter Motor Repair", "Car Electrical Diagnostics", "EV Charging Installation", "Wiring Harness Repair"],
+            "priceRange": "$$",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "527",
+              "bestRating": "5",
+              "worstRating": "1",
+            },
+            "review": [
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Sarah M." },
+                "datePublished": "2026-02-15",
+                "reviewBody": "USA Car Volts saved me when my car wouldn't start at a parking lot. Their mobile service arrived in 30 minutes and had me back on the road with a new battery and alternator check. Incredibly professional!",
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "James R." },
+                "datePublished": "2026-01-22",
+                "reviewBody": "I needed an EV charger installed at my home for my new Tesla. The team at USA Car Volts handled everything from the electrical panel upgrade to the charger installation. Clean, fast, and reasonably priced.",
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Maria L." },
+                "datePublished": "2026-02-28",
+                "reviewBody": "After three other shops couldn't find my intermittent electrical problem, USA Car Volts diagnosed it in under an hour. They fixed it and my car has been perfect since. Highly recommend!",
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "USA Car Volts",
+            "url": "https://www.usacarvolts.com",
+            "logo": "https://www.usacarvolts.com/logo.png",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+1-800-555-VOLT",
+              "contactType": "customer service",
+              "areaServed": "US",
+              "availableLanguage": ["English", "Spanish"],
+            },
+            "sameAs": [
+              "https://www.facebook.com/usacarvolts",
+              "https://www.instagram.com/usacarvolts",
+              "https://www.youtube.com/usacarvolts",
+            ],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "USA Car Volts - Florida",
+            "url": "https://www.usacarvolts.com/locations/florida",
+            "telephone": "+1-800-555-VOLT",
+            "address": {
+              "@type": "PostalAddress",
+              "addressRegion": "FL",
+              "addressCountry": "US",
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "27.9944",
+              "longitude": "-81.7603",
+            },
+            "openingHours": "Mo-Sa 08:00-18:00",
+            "priceRange": "$$",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "USA Car Volts - California",
+            "url": "https://www.usacarvolts.com/locations/california",
+            "telephone": "+1-800-555-VOLT",
+            "address": {
+              "@type": "PostalAddress",
+              "addressRegion": "CA",
+              "addressCountry": "US",
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "36.7783",
+              "longitude": "-119.4179",
+            },
+            "openingHours": "Mo-Sa 08:00-18:00",
+            "priceRange": "$$",
+          },
+        ]),
       }} />
 
       {/* ======== HERO SECTION ======== */}
@@ -84,6 +183,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* ======== CAR ANIMATION BANNER ======== */}
+      <CarAnimation />
+
       {/* ======== TRUST BADGES ======== */}
       <section className="bg-card py-8 border-b border-border">
         <div className="container mx-auto px-4">
@@ -91,7 +193,7 @@ const Index = () => {
             {[
               { icon: Shield, label: "Licensed & Insured", sub: "Fully certified technicians" },
               { icon: Clock, label: "Same-Day Service", sub: "Quick turnaround time" },
-              { icon: Star, label: "5-Star Rated", sub: "500+ positive reviews" },
+              { icon: Star, label: "5-Star Rated", sub: "527+ positive reviews" },
               { icon: CheckCircle, label: "Warranty Included", sub: "All work guaranteed" },
             ].map((item) => (
               <div key={item.label} className="flex flex-col items-center gap-2">
@@ -127,6 +229,23 @@ const Index = () => {
                 <p className="text-foreground/80 leading-relaxed mb-4">
                   Whether you're dealing with a dead battery on a Monday morning, a failing alternator that's dimming your headlights, or you need a complete EV charging station installed at your home, USA Car Volts has the expertise and equipment to handle it all. We service all major vehicle makes and models, including domestic brands like Ford, Chevrolet, and Dodge, as well as imports such as Toyota, Honda, BMW, Mercedes-Benz, and more.
                 </p>
+
+                {/* Infographic: Quick Stats */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8">
+                  {[
+                    { icon: Wrench, value: "10,000+", label: "Repairs Completed" },
+                    { icon: Star, value: "4.9★", label: "Average Rating" },
+                    { icon: MapPin, value: "24+", label: "Service Locations" },
+                    { icon: Clock, value: "30 min", label: "Avg Response Time" },
+                  ].map((stat) => (
+                    <div key={stat.label} className="bg-secondary rounded-lg p-4 text-center">
+                      <stat.icon className="h-6 w-6 text-primary mx-auto mb-2" />
+                      <p className="text-xl font-heading font-bold text-foreground">{stat.value}</p>
+                      <p className="text-xs text-muted-foreground">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+
                 <p className="text-foreground/80 leading-relaxed mb-4">
                   Our commitment goes beyond just fixing cars — we educate our customers about their vehicle's electrical systems, provide transparent pricing with no hidden fees, and back every repair with our comprehensive warranty. When you choose USA Car Volts, you're choosing peace of mind, professionalism, and the power to keep your vehicle running at peak performance.
                 </p>
@@ -157,9 +276,18 @@ const Index = () => {
                       <p className="text-foreground/80 leading-relaxed mb-3">
                         Our battery replacement service includes a comprehensive electrical system test to ensure your alternator and starter are functioning correctly, preventing premature battery failure. We test your charging system voltage, check for parasitic draws, clean and treat battery terminals, and ensure all connections are secure. Most battery replacements are completed in under 30 minutes.
                       </p>
-                      <p className="text-foreground/80 leading-relaxed mb-3">
-                        Signs you may need a battery replacement include slow engine cranking, dim headlights when idling, the battery warning light on your dashboard, swelling or corrosion on the battery case, and a battery that's more than 3-5 years old. Don't wait until you're stranded — schedule a battery check with USA Car Volts today through <a href="https://www.usacarvolts.com" className="text-primary hover:underline font-medium">www.usacarvolts.com</a>.
-                      </p>
+                      {/* Quick info cards */}
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {[
+                          { icon: Clock, text: "20-30 min service" },
+                          { icon: DollarSign, text: "From $150" },
+                          { icon: Shield, text: "2-5 yr warranty" },
+                        ].map((info) => (
+                          <span key={info.text} className="flex items-center gap-1 text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded-full">
+                            <info.icon className="h-3 w-3 text-primary" /> {info.text}
+                          </span>
+                        ))}
+                      </div>
                       <Button variant="outline" asChild>
                         <Link to="/services/battery-replacement">Learn More <ArrowRight className="h-4 w-4 ml-1" /></Link>
                       </Button>
@@ -180,11 +308,19 @@ const Index = () => {
                         The alternator is your vehicle's power generator — it charges the battery and supplies electricity to all your car's systems while the engine is running. A failing alternator can cause a cascade of electrical issues, from dimming lights and weak air conditioning to complete electrical failure while driving.
                       </p>
                       <p className="text-foreground/80 leading-relaxed mb-3">
-                        Our expert technicians at USA Car Volts use advanced diagnostic equipment to accurately test alternator output, voltage regulation, and diode functionality. We can determine whether your <Link to="/services/alternator-repair" className="text-primary hover:underline font-medium">alternator</Link> needs a simple repair — such as replacing brushes or a voltage regulator — or a complete replacement. We stock alternators for all major vehicle makes and models, and most repairs are completed the same day.
+                        Our expert technicians at USA Car Volts use advanced diagnostic equipment to accurately test alternator output, voltage regulation, and diode functionality. We can determine whether your <Link to="/services/alternator-repair" className="text-primary hover:underline font-medium">alternator</Link> needs a simple repair — such as replacing brushes or a voltage regulator — or a complete replacement.
                       </p>
-                      <p className="text-foreground/80 leading-relaxed mb-3">
-                        Common signs of alternator failure include a whining or grinding noise from the engine bay, dashboard warning lights (battery light or ALT light), flickering headlights, electrical accessories malfunctioning, and a dead battery despite being recently replaced. If you notice any of these symptoms, contact USA Car Volts immediately at <a href="https://www.usacarvolts.com" className="text-primary hover:underline font-medium">www.usacarvolts.com</a>.
-                      </p>
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {[
+                          { icon: Gauge, text: "Advanced testing" },
+                          { icon: DollarSign, text: "From $400" },
+                          { icon: Shield, text: "OEM quality" },
+                        ].map((info) => (
+                          <span key={info.text} className="flex items-center gap-1 text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded-full">
+                            <info.icon className="h-3 w-3 text-primary" /> {info.text}
+                          </span>
+                        ))}
+                      </div>
                       <Button variant="outline" asChild>
                         <Link to="/services/alternator-repair">Learn More <ArrowRight className="h-4 w-4 ml-1" /></Link>
                       </Button>
@@ -205,11 +341,19 @@ const Index = () => {
                         When you turn your key or push the start button, it's the starter motor that cranks your engine to life. A faulty <Link to="/services/starter-motor-repair" className="text-primary hover:underline font-medium">starter motor</Link> can leave you stranded, unable to start your vehicle regardless of your battery's condition. At USA Car Volts, we specialize in rapid starter motor diagnosis and repair.
                       </p>
                       <p className="text-foreground/80 leading-relaxed mb-3">
-                        Our starter motor service begins with a thorough diagnostic check to distinguish between starter issues, battery problems, and ignition switch faults — three conditions that can produce similar symptoms. We test starter draw amperage, solenoid engagement, and Bendix gear condition to pinpoint the exact issue. When replacement is needed, we use OEM-quality starters that meet or exceed manufacturer specifications.
+                        Our starter motor service begins with a thorough diagnostic check to distinguish between starter issues, battery problems, and ignition switch faults — three conditions that can produce similar symptoms. We test starter draw amperage, solenoid engagement, and Bendix gear condition to pinpoint the exact issue.
                       </p>
-                      <p className="text-foreground/80 leading-relaxed mb-3">
-                        Warning signs of a failing starter include a clicking sound when turning the key, the engine cranking slowly or intermittently, grinding noises during startup, the starter staying engaged after the engine starts, and smoke or burning smell from the starter area. These issues won't resolve on their own — contact <a href="https://www.usacarvolts.com" className="text-primary hover:underline font-medium">www.usacarvolts.com</a> for expert repair.
-                      </p>
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {[
+                          { icon: Lightbulb, text: "Expert diagnosis" },
+                          { icon: Clock, text: "Same-day service" },
+                          { icon: Shield, text: "12mo warranty" },
+                        ].map((info) => (
+                          <span key={info.text} className="flex items-center gap-1 text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded-full">
+                            <info.icon className="h-3 w-3 text-primary" /> {info.text}
+                          </span>
+                        ))}
+                      </div>
                       <Button variant="outline" asChild>
                         <Link to="/services/starter-motor-repair">Learn More <ArrowRight className="h-4 w-4 ml-1" /></Link>
                       </Button>
@@ -227,11 +371,25 @@ const Index = () => {
                     Modern vehicles contain incredibly sophisticated electrical systems that control everything from engine performance to climate control, safety features, and infotainment. When something goes wrong, pinpointing the exact cause requires advanced diagnostic equipment and deep expertise. That's where USA Car Volts' <Link to="/services/car-electrical-diagnostics" className="text-primary hover:underline font-medium">car electrical diagnostic services</Link> come in.
                   </p>
                   <p className="text-foreground/80 leading-relaxed mb-3">
-                    Our diagnostic service utilizes state-of-the-art OBD-II scanners, oscilloscopes, multimeters, and manufacturer-specific diagnostic tools to read fault codes, analyze live data streams, and perform component-level testing. We can diagnose issues with your ECU (Engine Control Unit), BCM (Body Control Module), TCM (Transmission Control Module), ABS system, airbag system, power windows, door locks, lighting circuits, and any other electrical component in your vehicle.
+                    Our diagnostic service utilizes state-of-the-art OBD-II scanners, oscilloscopes, multimeters, and manufacturer-specific diagnostic tools to read fault codes, analyze live data streams, and perform component-level testing. We can diagnose issues with your ECU, BCM, TCM, ABS system, airbag system, power windows, door locks, lighting circuits, and any other electrical component.
                   </p>
-                  <p className="text-foreground/80 leading-relaxed mb-3">
-                    Our comprehensive diagnostic process includes scanning for stored and pending trouble codes, analyzing freeze-frame data to understand the conditions when a fault occurred, performing live data analysis while the vehicle is running, conducting component-specific tests such as relay testing, actuator tests, and circuit resistance measurements, and providing a detailed report with repair recommendations and transparent pricing.
-                  </p>
+                  {/* Diagnostic process infographic */}
+                  <div className="bg-secondary rounded-lg p-4 mb-4">
+                    <p className="text-xs font-heading font-bold text-foreground mb-3 uppercase tracking-wider">Our Diagnostic Process</p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      {[
+                        { icon: CircuitBoard, label: "OBD-II Scan" },
+                        { icon: Gauge, label: "Live Data" },
+                        { icon: Wrench, label: "Component Test" },
+                        { icon: CheckCircle, label: "Full Report" },
+                      ].map((step) => (
+                        <div key={step.label} className="flex flex-col items-center gap-1 text-center">
+                          <step.icon className="h-5 w-5 text-primary" />
+                          <span className="text-xs text-muted-foreground">{step.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                   <Button variant="outline" asChild>
                     <Link to="/services/car-electrical-diagnostics">Learn More <ArrowRight className="h-4 w-4 ml-1" /></Link>
                   </Button>
@@ -250,11 +408,19 @@ const Index = () => {
                         As electric vehicles continue to revolutionize the automotive industry, USA Car Volts is at the forefront of <Link to="/services/ev-charging-installation" className="text-primary hover:underline font-medium">EV charging installation</Link>. Whether you need a Level 2 home charger for your Tesla, Chevy Bolt, Ford Mustang Mach-E, or any other EV, our certified electricians can design and install the perfect charging solution for your needs.
                       </p>
                       <p className="text-foreground/80 leading-relaxed mb-3">
-                        Our EV charging installation service covers residential and commercial installations, including electrical panel upgrades when needed, dedicated circuit installation, NEMA 14-50 outlet installation, hardwired charger mounting and configuration, Wi-Fi and smart charger setup, and compliance with all local building codes and NEC requirements. We work with all major charger brands including ChargePoint, JuiceBox, Wallbox, Tesla Wall Connector, and more.
+                        Our EV charging installation service covers residential and commercial installations, including electrical panel upgrades, dedicated circuit installation, NEMA 14-50 outlet installation, hardwired charger mounting and configuration, Wi-Fi and smart charger setup, and compliance with all local building codes and NEC requirements.
                       </p>
-                      <p className="text-foreground/80 leading-relaxed mb-3">
-                        The benefits of professional EV charger installation include faster charging times compared to standard outlets, increased home value, potential tax credits and utility rebates, peace of mind with proper electrical safety, and the convenience of waking up to a fully charged vehicle every morning. Get your free installation quote at <a href="https://www.usacarvolts.com" className="text-primary hover:underline font-medium">www.usacarvolts.com</a>.
-                      </p>
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {[
+                          { icon: Zap, text: "Level 2 charging" },
+                          { icon: DollarSign, text: "Tax credits available" },
+                          { icon: ThermometerSun, text: "All climates" },
+                        ].map((info) => (
+                          <span key={info.text} className="flex items-center gap-1 text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded-full">
+                            <info.icon className="h-3 w-3 text-primary" /> {info.text}
+                          </span>
+                        ))}
+                      </div>
                       <Button variant="outline" asChild>
                         <Link to="/services/ev-charging-installation">Learn More <ArrowRight className="h-4 w-4 ml-1" /></Link>
                       </Button>
@@ -272,12 +438,31 @@ const Index = () => {
                     Your vehicle's wiring harness is the nervous system of its electrical architecture. It bundles, routes, and protects the hundreds of wires that connect every electrical component in your car. Damaged or deteriorating wiring can cause intermittent electrical faults, short circuits, and even fire hazards. USA Car Volts offers expert <Link to="/services/wiring-harness-repair" className="text-primary hover:underline font-medium">wiring harness repair</Link> services to keep your vehicle safe and reliable.
                   </p>
                   <p className="text-foreground/80 leading-relaxed mb-3">
-                    Common causes of wiring harness damage include rodent chewing (especially common in vehicles stored in garages), heat damage from engine compartment temperatures, corrosion from moisture and road salt exposure, physical damage from accidents, and normal wear and aging over time. Our technicians can trace, repair, or completely replace damaged wiring harnesses using factory-spec connectors and weatherproof materials.
+                    Common causes of wiring harness damage include rodent chewing, heat damage from engine compartment temperatures, corrosion from moisture and road salt exposure, physical damage from accidents, and normal wear and aging over time. Our technicians can trace, repair, or completely replace damaged wiring harnesses using factory-spec connectors and weatherproof materials.
                   </p>
-                  <p className="text-foreground/80 leading-relaxed">
-                    Symptoms of wiring harness problems include intermittent electrical failures, blown fuses, warning lights with no apparent cause, components working inconsistently, and burning smells from behind the dashboard or in the engine bay. Don't ignore these warning signs — wiring issues can escalate quickly. Contact USA Car Volts at <a href="https://www.usacarvolts.com" className="text-primary hover:underline font-medium">www.usacarvolts.com</a> for a thorough inspection.
-                  </p>
+                  {/* Warning signs infographic */}
+                  <div className="bg-destructive/5 border border-destructive/20 rounded-lg p-4 mb-4">
+                    <p className="text-xs font-heading font-bold text-foreground mb-2 flex items-center gap-1">
+                      <AlertTriangle className="h-4 w-4 text-destructive" /> Warning Signs of Wiring Damage
+                    </p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {["Intermittent failures", "Multiple blown fuses", "Burning smell", "Exposed wires"].map((sign) => (
+                        <span key={sign} className="text-xs text-muted-foreground flex items-center gap-1">
+                          <Zap className="h-3 w-3 text-destructive" /> {sign}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
+              </section>
+
+              {/* EV COST CALCULATOR */}
+              <section id="ev-cost-calculator" className="mb-16">
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">Calculate Your EV Savings</h2>
+                <p className="text-foreground/80 leading-relaxed mb-6">
+                  Thinking about going electric? Use our interactive EV Cost Savings Calculator to see how much you could save annually by switching from a gas car to an electric vehicle. USA Car Volts can install your home EV charger — visit <a href="https://www.usacarvolts.com" className="text-primary hover:underline font-medium">www.usacarvolts.com</a> for a free quote.
+                </p>
+                <EVCostCalculator />
               </section>
 
               {/* WHY CHOOSE US */}
@@ -288,16 +473,16 @@ const Index = () => {
                 </p>
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   {[
-                    { title: "Electrical Specialists", desc: "Unlike general mechanics, we focus exclusively on automotive electrical systems. This specialization means deeper expertise, better tools, and faster diagnoses." },
-                    { title: "ASE-Certified Technicians", desc: "Every technician at USA Car Volts holds current ASE certification in electrical/electronic systems, ensuring your vehicle is in the most capable hands." },
-                    { title: "Latest Diagnostic Technology", desc: "We invest in cutting-edge diagnostic equipment from Snap-on, Autel, and manufacturer-specific tools to accurately identify and resolve even the most complex electrical issues." },
-                    { title: "Transparent Pricing", desc: "No hidden fees, no surprise charges. We provide detailed written estimates before any work begins, and our prices are competitive with industry standards." },
-                    { title: "Warranty on All Work", desc: "Every repair we perform comes with a minimum 12-month/12,000-mile warranty, giving you peace of mind long after you leave our shop." },
-                    { title: "Mobile Service Available", desc: "Can't come to us? We'll come to you. Our mobile service units are equipped with the same diagnostic tools and parts as our shops, available across our service areas." },
+                    { icon: CircuitBoard, title: "Electrical Specialists", desc: "Unlike general mechanics, we focus exclusively on automotive electrical systems. This specialization means deeper expertise, better tools, and faster diagnoses." },
+                    { icon: Shield, title: "ASE-Certified Technicians", desc: "Every technician at USA Car Volts holds current ASE certification in electrical/electronic systems, ensuring your vehicle is in the most capable hands." },
+                    { icon: Gauge, title: "Latest Diagnostic Technology", desc: "We invest in cutting-edge diagnostic equipment from Snap-on, Autel, and manufacturer-specific tools to accurately identify and resolve even the most complex electrical issues." },
+                    { icon: DollarSign, title: "Transparent Pricing", desc: "No hidden fees, no surprise charges. We provide detailed written estimates before any work begins, and our prices are competitive with industry standards." },
+                    { icon: CheckCircle, title: "Warranty on All Work", desc: "Every repair we perform comes with a minimum 12-month/12,000-mile warranty, giving you peace of mind long after you leave our shop." },
+                    { icon: Car, title: "Mobile Service Available", desc: "Can't come to us? We'll come to you. Our mobile service units are equipped with the same diagnostic tools and parts as our shops." },
                   ].map((item) => (
                     <div key={item.title} className="bg-card rounded-lg p-6 card-elevated">
                       <h4 className="font-heading font-bold text-foreground mb-2 flex items-center gap-2">
-                        <CheckCircle className="h-5 w-5 text-primary shrink-0" />
+                        <item.icon className="h-5 w-5 text-primary shrink-0" />
                         {item.title}
                       </h4>
                       <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
@@ -305,7 +490,7 @@ const Index = () => {
                   ))}
                 </div>
                 <p className="text-foreground/80 leading-relaxed">
-                  Our dedication to excellence has earned us a 4.9-star average rating across Google, Yelp, and BBB, with over 500 verified customer reviews. We're proud members of the Better Business Bureau with an A+ rating, and we're endorsed by AAA as a recommended auto repair facility. Experience the USA Car Volts difference — visit <a href="https://www.usacarvolts.com" className="text-primary hover:underline font-medium">www.usacarvolts.com</a> today.
+                  Our dedication to excellence has earned us a 4.9-star average rating across Google, Yelp, and BBB, with over 527 verified customer reviews. We're proud members of the Better Business Bureau with an A+ rating, and we're endorsed by AAA as a recommended auto repair facility. Experience the USA Car Volts difference — visit <a href="https://www.usacarvolts.com" className="text-primary hover:underline font-medium">www.usacarvolts.com</a> today.
                 </p>
               </section>
 
@@ -324,7 +509,7 @@ const Index = () => {
                     </div>
                     <div className="p-6">
                       <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                        Our Florida operations cover the entire state, with primary service centers in Miami-Dade, Broward, Palm Beach, Orange, Hillsborough, and Duval counties. Florida's hot, humid climate can be particularly harsh on car electrical systems, making regular electrical maintenance essential.
+                        Our Florida operations cover the entire state, with primary service centers in Miami-Dade, Broward, Palm Beach, Orange, Hillsborough, and Duval counties. Florida's hot, humid climate can be particularly harsh on car electrical systems.
                       </p>
                       <span className="text-primary font-medium text-sm group-hover:underline flex items-center gap-1">
                         View Florida Services <ArrowRight className="h-3.5 w-3.5" />
@@ -340,7 +525,7 @@ const Index = () => {
                     </div>
                     <div className="p-6">
                       <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                        California is the nation's largest automotive market and the epicenter of the EV revolution. USA Car Volts has a strong presence across the Golden State, serving Los Angeles, San Francisco Bay Area, San Diego, Sacramento, and the Inland Empire.
+                        California is the nation's largest automotive market and the epicenter of the EV revolution. USA Car Volts has a strong presence across the Golden State.
                       </p>
                       <span className="text-primary font-medium text-sm group-hover:underline flex items-center gap-1">
                         View California Services <ArrowRight className="h-3.5 w-3.5" />
@@ -358,15 +543,16 @@ const Index = () => {
                 </p>
                 <div className="grid md:grid-cols-4 gap-6">
                   {[
-                    { step: "1", title: "Contact Us", desc: "Call 1-800-555-VOLT or visit www.usacarvolts.com to describe your issue and schedule an appointment." },
-                    { step: "2", title: "Free Diagnosis", desc: "Our technicians perform a comprehensive electrical system diagnosis to identify the exact issue." },
-                    { step: "3", title: "Transparent Quote", desc: "We provide a detailed written estimate with parts and labor costs before any work begins." },
-                    { step: "4", title: "Expert Repair", desc: "Our certified technicians perform the repair using quality parts, backed by our warranty." },
+                    { step: "1", icon: Phone, title: "Contact Us", desc: "Call 1-800-555-VOLT or visit www.usacarvolts.com to describe your issue and schedule an appointment." },
+                    { step: "2", icon: CircuitBoard, title: "Free Diagnosis", desc: "Our technicians perform a comprehensive electrical system diagnosis to identify the exact issue." },
+                    { step: "3", icon: DollarSign, title: "Transparent Quote", desc: "We provide a detailed written estimate with parts and labor costs before any work begins." },
+                    { step: "4", icon: Wrench, title: "Expert Repair", desc: "Our certified technicians perform the repair using quality parts, backed by our warranty." },
                   ].map((item) => (
                     <div key={item.step} className="text-center">
-                      <div className="w-14 h-14 rounded-full bg-hero-gradient text-primary-foreground flex items-center justify-center text-xl font-heading font-bold mx-auto mb-4 animate-pulse-glow">
+                      <div className="w-14 h-14 rounded-full bg-hero-gradient text-primary-foreground flex items-center justify-center text-xl font-heading font-bold mx-auto mb-3 animate-pulse-glow">
                         {item.step}
                       </div>
+                      <item.icon className="h-5 w-5 text-primary mx-auto mb-2" />
                       <h4 className="font-heading font-bold text-foreground mb-2">{item.title}</h4>
                       <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
                     </div>
@@ -379,20 +565,23 @@ const Index = () => {
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">What Our Customers Say About USA Car Volts</h2>
                 <div className="grid md:grid-cols-3 gap-6">
                   {[
-                    { name: "Sarah M.", loc: "Miami, FL", text: "USA Car Volts saved me when my car wouldn't start at a parking lot. Their mobile service arrived in 30 minutes and had me back on the road with a new battery and alternator check. Incredibly professional!" },
-                    { name: "James R.", loc: "Los Angeles, CA", text: "I needed an EV charger installed at my home for my new Tesla. The team at USA Car Volts handled everything from the electrical panel upgrade to the charger installation. Clean, fast, and reasonably priced." },
-                    { name: "Maria L.", loc: "Orlando, FL", text: "After three other shops couldn't find my intermittent electrical problem, USA Car Volts diagnosed it in under an hour — a corroded ground wire in the engine harness. They fixed it and my car has been perfect since. Highly recommend!" },
+                    { name: "Sarah M.", loc: "Miami, FL", text: "USA Car Volts saved me when my car wouldn't start at a parking lot. Their mobile service arrived in 30 minutes and had me back on the road with a new battery and alternator check. Incredibly professional!", rating: 5 },
+                    { name: "James R.", loc: "Los Angeles, CA", text: "I needed an EV charger installed at my home for my new Tesla. The team at USA Car Volts handled everything from the electrical panel upgrade to the charger installation. Clean, fast, and reasonably priced.", rating: 5 },
+                    { name: "Maria L.", loc: "Orlando, FL", text: "After three other shops couldn't find my intermittent electrical problem, USA Car Volts diagnosed it in under an hour — a corroded ground wire in the engine harness. They fixed it and my car has been perfect since. Highly recommend!", rating: 5 },
+                    { name: "David K.", loc: "San Diego, CA", text: "Best automotive electrical shop I've ever used. They found a parasitic draw that two dealers couldn't figure out. Fair pricing, great communication, and the car works perfectly now.", rating: 5 },
+                    { name: "Lisa T.", loc: "Tampa, FL", text: "Had my alternator replaced in under 2 hours. They showed me the old alternator and explained exactly what failed. Honest, transparent, and the car runs like new.", rating: 5 },
+                    { name: "Robert P.", loc: "Sacramento, CA", text: "Excellent EV charger installation. They handled the permit, installed a dedicated 50A circuit, and had everything done in one day. Highly recommend for any EV owner.", rating: 5 },
                   ].map((review) => (
                     <div key={review.name} className="bg-card rounded-lg p-6 card-elevated">
                       <div className="flex gap-1 mb-3">
-                        {[...Array(5)].map((_, i) => (
+                        {[...Array(review.rating)].map((_, i) => (
                           <Star key={i} className="h-4 w-4 fill-primary text-primary" />
                         ))}
                       </div>
                       <p className="text-sm text-muted-foreground leading-relaxed mb-4 italic">"{review.text}"</p>
                       <div>
                         <span className="font-heading font-bold text-foreground text-sm">{review.name}</span>
-                        <span className="text-xs text-muted-foreground ml-2">{review.loc}</span>
+                        <span className="text-xs text-muted-foreground ml-2 flex items-center gap-1 inline-flex"><MapPin className="h-3 w-3" />{review.loc}</span>
                       </div>
                     </div>
                   ))}
@@ -405,6 +594,22 @@ const Index = () => {
                 <p className="text-foreground/80 leading-relaxed mb-4">
                   Understanding your vehicle's electrical system is the first step to recognizing problems early and avoiding costly repairs. At USA Car Volts, we believe informed customers make better decisions about their vehicle's care. Here's your comprehensive guide to automotive electrical systems, brought to you by <a href="https://www.usacarvolts.com" className="text-primary hover:underline font-medium">www.usacarvolts.com</a>.
                 </p>
+
+                {/* Visual: 3 core components */}
+                <div className="grid grid-cols-3 gap-4 my-6">
+                  {[
+                    { icon: Battery, label: "Battery", desc: "Stores energy, starts engine" },
+                    { icon: Settings, label: "Alternator", desc: "Generates power while running" },
+                    { icon: Wrench, label: "Starter", desc: "Cranks engine to life" },
+                  ].map((comp) => (
+                    <div key={comp.label} className="bg-secondary rounded-lg p-4 text-center">
+                      <comp.icon className="h-8 w-8 text-primary mx-auto mb-2" />
+                      <p className="font-heading font-bold text-foreground text-sm">{comp.label}</p>
+                      <p className="text-xs text-muted-foreground">{comp.desc}</p>
+                    </div>
+                  ))}
+                </div>
+
                 <p className="text-foreground/80 leading-relaxed mb-4">
                   Your car's electrical system consists of three primary components working together: the battery, the alternator, and the starter motor. The battery stores electrical energy and provides the initial power to start the engine. The alternator generates electricity while the engine is running, recharging the battery and powering all electrical accessories. The starter motor uses electrical energy from the battery to crank the engine during startup.
                 </p>
@@ -413,9 +618,12 @@ const Index = () => {
                 </p>
 
                 <div id="common-problems" className="mt-8 mb-8">
-                  <h3 className="text-2xl font-heading font-bold text-foreground mb-4">Common Car Electrical Problems and Their Causes</h3>
+                  <h3 className="text-2xl font-heading font-bold text-foreground mb-4 flex items-center gap-2">
+                    <AlertTriangle className="h-5 w-5 text-primary" />
+                    Common Car Electrical Problems and Their Causes
+                  </h3>
                   <p className="text-foreground/80 leading-relaxed mb-4">
-                    Electrical problems are among the most common reasons vehicles are brought in for service. At USA Car Volts, we see these issues regularly and can resolve them quickly. The most common car electrical problems include:
+                    Electrical problems are among the most common reasons vehicles are brought in for service. At USA Car Volts, we see these issues regularly and can resolve them quickly:
                   </p>
                   <ul className="space-y-3 mb-4">
                     {[
@@ -437,19 +645,22 @@ const Index = () => {
                 </div>
 
                 <div id="maintenance-tips" className="mt-8">
-                  <h3 className="text-2xl font-heading font-bold text-foreground mb-4">Car Electrical System Maintenance Tips from USA Car Volts</h3>
+                  <h3 className="text-2xl font-heading font-bold text-foreground mb-4 flex items-center gap-2">
+                    <Lightbulb className="h-5 w-5 text-primary" />
+                    Car Electrical System Maintenance Tips from USA Car Volts
+                  </h3>
                   <p className="text-foreground/80 leading-relaxed mb-4">
                     Prevention is always better than repair. By following these maintenance tips from our experts at <a href="https://www.usacarvolts.com" className="text-primary hover:underline font-medium">www.usacarvolts.com</a>, you can extend the life of your car's electrical components and avoid unexpected breakdowns:
                   </p>
                   <ul className="space-y-3">
                     {[
-                      "Have your battery tested every 6 months, especially before summer and winter seasons when extreme temperatures stress batteries most",
+                      "Have your battery tested every 6 months, especially before summer and winter seasons",
                       "Keep battery terminals clean and free of corrosion — apply anti-corrosion grease after cleaning",
                       "Have your alternator output tested annually as part of your regular vehicle maintenance",
                       "Don't leave accessories running (lights, radio, chargers) when the engine is off for extended periods",
                       "Address warning lights immediately — they're your car's way of telling you something needs attention",
                       "If your vehicle sits for extended periods, use a battery maintainer/trickle charger to prevent discharge",
-                      "Have any aftermarket electrical accessories (stereos, lights, alarms) professionally installed to prevent wiring damage",
+                      "Have any aftermarket electrical accessories professionally installed to prevent wiring damage",
                       "Schedule a comprehensive electrical system inspection with USA Car Volts at least once a year",
                     ].map((tip) => (
                       <li key={tip} className="flex items-start gap-2 text-foreground/80">
@@ -464,6 +675,19 @@ const Index = () => {
               {/* FAQ */}
               <section id="faq" className="mb-16">
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">Frequently Asked Questions</h2>
+                {/* FAQ Schema */}
+                <script type="application/ld+json" dangerouslySetInnerHTML={{
+                  __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                      { "@type": "Question", "name": "How long does a car battery replacement take?", "acceptedAnswer": { "@type": "Answer", "text": "Most battery replacements at USA Car Volts are completed in 20-30 minutes." } },
+                      { "@type": "Question", "name": "How much does alternator repair cost?", "acceptedAnswer": { "@type": "Answer", "text": "Minor repairs range from $150-$300, while complete replacement usually costs $400-$800 including parts and labor." } },
+                      { "@type": "Question", "name": "Do you offer mobile car electrical service?", "acceptedAnswer": { "@type": "Answer", "text": "Yes! USA Car Volts offers mobile service across Florida and California." } },
+                      { "@type": "Question", "name": "Do you service electric vehicles?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely! We offer EV charging installation, high-voltage diagnostics, and EV electrical system maintenance." } },
+                    ],
+                  }),
+                }} />
                 <div className="space-y-6">
                   {[
                     { q: "How long does a car battery replacement take?", a: "Most battery replacements at USA Car Volts are completed in 20-30 minutes. This includes testing your charging system, removing the old battery, installing the new one, cleaning and treating terminals, and verifying the electrical system is functioning properly." },
@@ -472,8 +696,8 @@ const Index = () => {
                     { q: "What brands of car batteries do you use?", a: "We use premium batteries from trusted manufacturers including Interstate, Optima, DieHard, ACDelco, Bosch, and Exide. We'll recommend the best battery for your specific vehicle, driving habits, and climate conditions." },
                     { q: "How do I know if my car has an electrical problem?", a: "Common signs include dim or flickering lights, slow engine cranking, dashboard warning lights, dead battery, electrical accessories not working, burning smell from electrical components, and blown fuses. If you notice any of these symptoms, schedule a diagnostic check at www.usacarvolts.com." },
                     { q: "Do you service electric vehicles (EVs)?", a: "Absolutely! USA Car Volts services both traditional combustion vehicles and electric vehicles. We offer EV-specific services including charging station installation, high-voltage battery diagnostics, and EV electrical system maintenance. Our technicians are certified in EV safety protocols." },
-                    { q: "What areas do you currently serve?", a: "We currently serve Florida (including Miami, Orlando, Tampa, Jacksonville, and surrounding areas) and California (including Los Angeles, San Francisco, San Diego, Sacramento, and surrounding areas). We're expanding to additional states — visit www.usacarvolts.com for the latest coverage information." },
-                    { q: "Is there a warranty on your repairs?", a: "Yes, all repairs performed by USA Car Volts come with a minimum 12-month/12,000-mile warranty. Battery replacements carry the manufacturer's warranty, which typically ranges from 2-5 years depending on the battery. Our warranty covers both parts and labor." },
+                    { q: "What areas do you currently serve?", a: "We currently serve Florida (including Miami, Orlando, Tampa, Jacksonville) and California (including Los Angeles, San Francisco, San Diego, Sacramento). We're expanding to additional states — visit www.usacarvolts.com for the latest coverage information." },
+                    { q: "Is there a warranty on your repairs?", a: "Yes, all repairs performed by USA Car Volts come with a minimum 12-month/12,000-mile warranty. Battery replacements carry the manufacturer's warranty, which typically ranges from 2-5 years. Our warranty covers both parts and labor." },
                   ].map((faq) => (
                     <div key={faq.q} className="bg-card rounded-lg p-6 card-elevated">
                       <h4 className="font-heading font-bold text-foreground mb-2">{faq.q}</h4>
@@ -481,6 +705,15 @@ const Index = () => {
                     </div>
                   ))}
                 </div>
+              </section>
+
+              {/* MINI GAME */}
+              <section id="mini-game" className="mb-16">
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">Take a Break — Play Our Mini Game!</h2>
+                <p className="text-foreground/80 leading-relaxed mb-6">
+                  While you're here, try our fun "Catch the Volts" mini game! Move your car left and right to catch falling bolts ⚡ and batteries 🔋. Don't let any bolts hit the ground!
+                </p>
+                <CarCatchGame />
               </section>
 
               {/* CTA */}
