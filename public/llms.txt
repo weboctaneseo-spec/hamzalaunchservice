@@ -1,0 +1,46 @@
+# USA Car Volts - LLMs.txt
+# https://www.usacarvolts.com
+# Professional Car Electrical Services Across the USA
+
+## About
+USA Car Volts is America's premier automotive electrical service provider, offering expert car electrical services including battery replacement, alternator repair, starter motor repair, car electrical diagnostics, EV charging station installation, and wiring harness repair. We serve Florida and California with ASE-certified technicians, same-day service, and warranty-backed repairs.
+
+## Contact
+- Website: https://www.usacarvolts.com
+- Phone: 1-800-555-VOLT
+- Email: info@usacarvolts.com
+
+## Services
+- Car Battery Replacement: https://www.usacarvolts.com/services/battery-replacement
+- Alternator Repair & Replacement: https://www.usacarvolts.com/services/alternator-repair
+- Starter Motor Repair: https://www.usacarvolts.com/services/starter-motor-repair
+- Car Electrical Diagnostics: https://www.usacarvolts.com/services/car-electrical-diagnostics
+- EV Charging Station Installation: https://www.usacarvolts.com/services/ev-charging-installation
+- Wiring Harness Repair: https://www.usacarvolts.com/services/wiring-harness-repair
+
+## Service Locations
+- Florida: https://www.usacarvolts.com/locations/florida
+  - Cities: Miami, Fort Lauderdale, West Palm Beach, Orlando, Tampa, St. Petersburg, Jacksonville, Tallahassee, Naples, Gainesville, Sarasota, Daytona Beach
+- California: https://www.usacarvolts.com/locations/california
+  - Cities: Los Angeles, San Francisco, San Diego, Sacramento, San Jose, Oakland, Fresno, Long Beach, Anaheim, Riverside, Bakersfield, Santa Barbara
+
+## Blog
+- Blog Home: https://www.usacarvolts.com/blog
+- 7 Warning Signs Your Car Battery Needs Replacement: https://www.usacarvolts.com/blog/signs-your-car-battery-needs-replacement
+- Alternator vs Battery Problems - How to Tell the Difference: https://www.usacarvolts.com/blog/alternator-vs-battery-problems
+- Complete Guide to Home EV Charger Installation: https://www.usacarvolts.com/blog/ev-charging-home-installation-guide
+- 10 Essential Car Electrical System Maintenance Tips: https://www.usacarvolts.com/blog/car-electrical-system-maintenance-tips
+- Most Common Car Electrical Problems and Solutions: https://www.usacarvolts.com/blog/common-car-electrical-problems-solutions
+- How Florida's Heat Affects Your Car Battery: https://www.usacarvolts.com/blog/florida-car-battery-tips-hot-climate
+
+## Key Facts
+- Rating: 4.9 stars from 527+ reviews
+- Certifications: ASE-Certified, BBB A+ Rating, AAA Recommended
+- Warranty: Minimum 12-month/12,000-mile on all repairs
+- Battery brands: Interstate, Optima, DieHard, ACDelco, Bosch
+- Service type: In-shop and mobile service available
+- Hours: Monday-Saturday 8:00 AM - 6:00 PM
+
+## Sitemap
+- HTML Sitemap: https://www.usacarvolts.com/sitemap
+- XML Sitemap: https://www.usacarvolts.com/sitemap.xml
