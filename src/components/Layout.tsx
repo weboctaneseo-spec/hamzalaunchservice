@@ -2,10 +2,12 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Breadcrumbs from "./Breadcrumbs";
+import ScrollToTop from "./ScrollToTop";
 
 const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollToTop />
       <Header />
       <Breadcrumbs />
       <main className="flex-1">
