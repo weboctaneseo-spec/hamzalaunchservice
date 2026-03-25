@@ -3,3 +3,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.usacarvolts.com/sitemap.xml
+
+# LLMs.txt for AI search bots
+# https://www.usacarvolts.com/llms.txt
