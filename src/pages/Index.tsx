@@ -169,7 +169,7 @@ const Index = () => {
                   Call Now: 1-800-555-VOLT
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10" asChild>
+              <Button size="lg" className="bg-white text-primary font-bold hover:bg-white/90 border-2 border-white" asChild>
                 <Link to="/services/battery-replacement">
                   Explore Services <ArrowRight className="h-4 w-4 ml-2" />
                 </Link>
